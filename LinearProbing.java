@@ -99,6 +99,7 @@ public class LinearProbing {
 
                 // Resize the hash table to fit the new object
                 resize();
+                System.out.println("Resized hash table capacity: " + getCapacity() + "\n");
                 insert(object);
                 return;
             }
@@ -159,7 +160,7 @@ public class LinearProbing {
         while (getHashTable()[hash] != null) {
             // Check if the value at the index is the value being searched for
             if (getHashTable()[hash].equals(object)) {
-                System.out.println("Found " + object + " at index " + hash);
+                System.out.println("\nFound " + object + " at index " + hash);
                 return hash;
             }
             hash++;
@@ -172,7 +173,7 @@ public class LinearProbing {
         }
 
         // If the value is not found, return deleted value (-1)
-        System.out.println(object + " not found in the hash table");
+        System.out.println("\n" + object + " not found in the hash table.");
         return getDeletedValue();
     }
 
@@ -188,17 +189,18 @@ public class LinearProbing {
             System.out.println("Deleted '" + object + "' at index " + hash);
         }
         else {
-            System.out.println("'" + object + "' not found in the hash table. Hence cannot be deleted");
+            System.out.println("Hence " + object + " cannot be deleted.");
         }
     }
 
     // Display the hash table
     public void display() {
+        System.out.println("\n------------------------------------");
         System.out.println("Hash Table -> Linear Probing: ");
-        System.out.println("(index: value)" + "\n");
+        System.out.println("(index: value)");
         for (int i = 0; i < getCapacity(); i++) {
             System.out.print(i + ": " + getHashTable()[i] + "\n");
         }
-        System.out.println("\n");
+        System.out.print("------------------------------------\n");
     }
 }
