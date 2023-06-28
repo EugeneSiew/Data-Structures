@@ -103,6 +103,7 @@ public class QuadraticProbing {
                
                 // Resize the hash table to fit the new object
                 resize();
+                System.out.println("Resized hash table capacity: " + getCapacity() + "\n");
                 insert(object);
                 return;
             }
@@ -164,7 +165,7 @@ public class QuadraticProbing {
         while (getHashTable()[hash] != null) {
             // Check if the value at the index is the value being searched for
             if (getHashTable()[hash].equals(object)) {
-                System.out.println("Found " + object + " at index " + hash);
+                System.out.println("\nFound " + object + " at index " + hash);
                 return hash;
             }
             hash = initialHash + (stepNumber * stepNumber);
@@ -178,7 +179,7 @@ public class QuadraticProbing {
         }
 
         // If the value is not found, return deleted value (-1)
-        System.out.println(object + " not found in the hash table");
+        System.out.println("\n" + object + " not found in the hash table.");
         return getDeletedValue();
     }
 
@@ -194,72 +195,18 @@ public class QuadraticProbing {
             System.out.println("Deleted '" + object + "' at index " + hash);
         } 
         else {
-            System.out.println("'" + object + "' not found in the hash table. Hence cannot be deleted");
+            System.out.println("Hence " + object + " cannot be deleted.");
         }
     }
 
     // Display the hash table
     public void display() {
+        System.out.println("\n------------------------------------");
         System.out.println("Hash Table -> Quadratic Probing: ");
-        System.out.println("(index: value)" + "\n");
+        System.out.println("(index: value)");
         for (int i = 0; i < getCapacity(); i++) {
             System.out.print(i + ": " + getHashTable()[i] + "\n");
         }
-        System.out.println("\n");
-    }
-
-    public static void main(String[] args) {
-        QuadraticProbing test = new QuadraticProbing(29);
-        /*
-         * test.insert(1);
-         * test.insert(4);
-         * test.insert(6);
-         * test.insert(4);
-         * test.insert(4);
-         * test.insert(4);
-         * test.display();
-         * 
-         * test.delete(4);
-         * test.display();
-         * 
-         * test.delete(4);
-         * test.display();
-         * 
-         * test.delete(4);
-         * test.display();
-         * 
-         * test.delete(4);
-         * test.display();
-         */
-
-        test.insert("cats");
-        test.insert("cats");
-        test.insert("cats");
-        test.display();
-
-        test.delete("cats");
-        test.display();
-
-        test.delete("cats");
-        test.display();
-
-        /*
-         * 
-         * test.insert("Calf");
-         * test.insert("Bag");
-         * test.insert("Hut");
-         * test.insert("Tag");
-         * test.insert(5);
-         * test.insert("Duck");
-         * test.insert("Calf");
-         * test.display();
-         * 
-         * test.insert("Bag");
-         * test.insert("Hiut");
-         * test.display();
-         * test.insert('a');
-         * test.display();
-         */
-
+        System.out.print("------------------------------------\n");
     }
 }
