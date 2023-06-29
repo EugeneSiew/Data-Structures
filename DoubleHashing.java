@@ -88,7 +88,7 @@ public class DoubleHashing {
 
         int hash2;
         int constant = findConstant(capacity);
-        // hash2 = constant - (object % constant), where constant is a prime number less than array size
+        // hashFunc2 = constant - (object % constant), where constant is a prime number less than array size
 
         // Determine which data type is being inputted
         switch (getType(object)) {
@@ -118,6 +118,7 @@ public class DoubleHashing {
         // Find first hash and second hash
         int hash = hashFunction(object, getCapacity());
         int stepSize = hashFunction2(object, getCapacity());
+
         System.out.println("Inserting " + object);
         System.out.println("First hash value: " + hash);
         System.out.println("Second hash value: " + stepSize);
@@ -142,6 +143,7 @@ public class DoubleHashing {
                 
                 // Resize the hash table to fit the new object
                 resize();
+                System.out.println("Resized hash table capacity: " + getCapacity() + "\n");
                 insert(object);
                 return;
             }
@@ -203,7 +205,7 @@ public class DoubleHashing {
         while (getHashTable()[hash] != null) {
             // Check if the value at the index is the value being searched for
             if (getHashTable()[hash].equals(object)) {
-                System.out.println("Found " + object + " at index " + hash);
+                System.out.println("\nFound " + object + " at index " + hash);
                 return hash;
             }
             hash += stepSize;
@@ -216,7 +218,7 @@ public class DoubleHashing {
         }
 
         // If the value is not found, return deleted value (-1)
-        System.out.println(object + " not found in the hash table");
+        System.out.println("\n" + object + " not found in the hash table.");
         return getDeletedValue();
     }
 
@@ -232,41 +234,18 @@ public class DoubleHashing {
             System.out.println("Deleted '" + object + "' at index " + hash);
         } 
         else {
-            System.out.println("'" + object + "' not found in the hash table. Hence cannot be deleted");
+            System.out.println("Hence " + object + " cannot be deleted.");
         }
     }
 
     // Display the hash table
     public void display() {
+        System.out.println("\n------------------------------------");
         System.out.println("Hash Table -> Double Hashing: ");
-        System.out.println("(index: value)" + "\n");
+        System.out.println("(index: value)");
         for (int i = 0; i < getCapacity(); i++) {
             System.out.print(i + ": " + getHashTable()[i] + "\n");
         }
-        System.out.println("\n");
-    }
-
-    public static void main(String[] args) {
-        DoubleHashing test = new DoubleHashing(11);
-
-        test.insert(1);
-        test.insert(4);
-        test.insert(6);
-        test.insert(4);
-        test.insert(4);
-        test.insert(4);
-        test.display();
-
-        test.delete(4);
-        test.display();
-        
-        test.delete(4);
-        test.display();
-
-        test.delete(4);
-        test.display();
-
-        test.delete(4);
-        test.display();
+        System.out.print("------------------------------------\n");
     }
 }
