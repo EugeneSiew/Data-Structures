@@ -11,12 +11,20 @@ public class LinearProbingTest {
             case "string":
                 if (scanner.hasNextLine()) {
                     value = scanner.nextLine();
+                    if (value.equals("-1")) {
+                        System.out.println("Invalid input. Do not enter -1 or try entering a string.\n");
+                        value = null;
+                    }
                 }
                 break;
 
             case "integer":
-                if ((scanner.hasNextInt()) ) {
+                if ((scanner.hasNextInt())) {
                     value = scanner.nextInt();
+                    if (value.equals(-1)) {
+                        System.out.println("Invalid input. Do not enter -1 or try entering an integer.\n");
+                        value = null;
+                    }
                     // Consume the newline character
                     scanner.nextLine();
                 } else {
@@ -29,6 +37,10 @@ public class LinearProbingTest {
             case "double":
                 if (scanner.hasNextDouble()) {
                     value = scanner.nextDouble();
+                    if (value.equals(-1.0)) {
+                        System.out.println("Invalid input. Do not enter -1 or try entering a double.\n");
+                        value = null;
+                    }
                     // Consume the newline character
                     scanner.nextLine();
                 } else {
@@ -73,6 +85,7 @@ public class LinearProbingTest {
         System.out.println("Collision Handling Method: Linear Probing");
         System.out.println("(Note that in our implementation, the deleted value of a cell is set to -1)");
         System.out.println("-----------------------------------------------");
+        System.out.println();
 
         // Loop to get valid capacity
         do {
@@ -125,7 +138,7 @@ public class LinearProbingTest {
 
         // Loop to get valid hash table operations
         while (!end) {
-            System.out.println("\nHash Table Operations: \n(1) Insert \n(2) Delete \n(3) Search \n(4) Display \n(5) Exit");
+            System.out.println("\nHash Table Operations: \n(1) Insert \n(2) Search \n(3) Delete \n(4) Display \n(5) Exit");
             System.out.println("\nSelect operation by entering the corresponding number: ");
             String operation = input.nextLine();
 
@@ -139,35 +152,12 @@ public class LinearProbingTest {
                         value = checkInput(dataType, input);
                     } while (value == null);
 
-                    // Check if value is the deleted value
-                    if (value.equals(lpObject.getDeletedValue())) {
-                        System.out.println("\nInvalid input. Do not enter " + lpObject.getDeletedValue() + ". ");
-                        break;
-                    }
                     lpObject.insert(value);
                     lpObject.display();
                     break;
 
-                // Delete
-                case "2":
-                    // Get value to delete
-                    do {
-                        System.out.println("Enter value to delete: ");
-                        // Check if input is the data type entered before
-                        value = checkInput(dataType, input);
-                    } while (value == null);
-
-                    // Check if value is the deleted value
-                    if (value.equals(lpObject.getDeletedValue())) {
-                        System.out.println("\nInvalid input. Do not enter " + lpObject.getDeletedValue() + ". ");
-                        break;
-                    }
-                    lpObject.delete(value);
-                    lpObject.display();
-                    break;
-
                 // Search
-                case "3":
+                case "2":
                     // Get value to search
                     do {
                         System.out.println("Enter value to search: ");
@@ -175,12 +165,20 @@ public class LinearProbingTest {
                         value = checkInput(dataType, input);
                     } while (value == null);
 
-                    // Check if value is the deleted value
-                    if (value.equals(lpObject.getDeletedValue())) {
-                        System.out.println("Invalid input. Do not enter " + lpObject.getDeletedValue() + ".");
-                        break;
-                    }
                     lpObject.search(value);
+                    lpObject.display();
+                    break;
+
+                // Delete
+                case "3":
+                    // Get value to search
+                    do {
+                        System.out.println("Enter value to delete: ");
+                        // Check if input is the data type entered before
+                        value = checkInput(dataType, input);
+                    } while (value == null);
+
+                    lpObject.delete(value);
                     lpObject.display();
                     break;
 
