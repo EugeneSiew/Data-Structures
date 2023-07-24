@@ -190,7 +190,9 @@ public class DoubleHashing {
         setHashTable(newHashTable);
         // Rehash all the values in the old hash table into the new hash table
         for (Object obj : oldHashTable) {
-            insert(obj);
+            if (obj != null && !(obj.equals(getDeletedValue()))) {
+                insert(obj);
+            }
         }
     }
 
