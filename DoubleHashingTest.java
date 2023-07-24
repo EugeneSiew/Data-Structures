@@ -125,7 +125,7 @@ public class DoubleHashingTest {
 
         // Loop to get valid hash table operations
         while (!end) {
-            System.out.println("\nHash Table Operations: \n(1) Insert \n(2) Delete \n(3) Search \n(4) Display \n(5) Exit");
+            System.out.println("\nHash Table Operations: \n(1) Insert \n(2) Search \n(3) Delete \n(4) Display \n(5) Exit");
             System.out.println("\nSelect operation by entering the corresponding number: ");
             String operation = input.nextLine();
 
@@ -139,35 +139,12 @@ public class DoubleHashingTest {
                         value = checkInput(dataType, input);
                     } while (value == null);
 
-                    // Check if value is the deleted value
-                    if (value.equals(dhObject.getDeletedValue())) {
-                        System.out.println("\nInvalid input. Do not enter " + dhObject.getDeletedValue() + ". ");
-                        break;
-                    }
                     dhObject.insert(value);
                     dhObject.display();
                     break;
 
-                // Delete
-                case "2":
-                    // Get value to delete
-                    do {
-                        System.out.println("Enter value to delete: ");
-                        // Check if input is the data type entered before
-                        value = checkInput(dataType, input);
-                    } while (value == null);
-
-                    // Check if value is the deleted value
-                    if (value.equals(dhObject.getDeletedValue())) {
-                        System.out.println("\nInvalid input. Do not enter " + dhObject.getDeletedValue() + ". ");
-                        break;
-                    }
-                    dhObject.delete(value);
-                    dhObject.display();
-                    break;
-
                 // Search
-                case "3":
+                case "2":
                     // Get value to search
                     do {
                         System.out.println("Enter value to search: ");
@@ -175,12 +152,20 @@ public class DoubleHashingTest {
                         value = checkInput(dataType, input);
                     } while (value == null);
 
-                    // Check if value is the deleted value
-                    if (value.equals(dhObject.getDeletedValue())) {
-                        System.out.println("Invalid input. Do not enter " + dhObject.getDeletedValue() + ".");
-                        break;
-                    }
                     dhObject.search(value);
+                    dhObject.display();
+                    break;
+
+                // Delete
+                case "3":
+                    // Get value to delete
+                    do {
+                        System.out.println("Enter value to delete: ");
+                        // Check if input is the data type entered before
+                        value = checkInput(dataType, input);
+                    } while (value == null);
+
+                    dhObject.delete(value);
                     dhObject.display();
                     break;
 
