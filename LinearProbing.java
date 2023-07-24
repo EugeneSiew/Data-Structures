@@ -146,7 +146,9 @@ public class LinearProbing {
         setHashTable(newHashTable);
         // Rehash all the values in the old hash table into the new hash table
         for (Object obj: oldHashTable){
-            insert(obj);
+            if (obj != null && !(obj.equals(getDeletedValue()))) {
+                insert(obj);
+            }
         }
     }
     
@@ -164,7 +166,7 @@ public class LinearProbing {
                 return hash;
             }
             hash++;
-            hash = hash % capacity;
+            hash = hash % getCapacity();
             
             // Check if the program has looped back to the initial hash
             if (hash == initialHash) {
@@ -202,5 +204,12 @@ public class LinearProbing {
             System.out.print(i + ": " + getHashTable()[i] + "\n");
         }
         System.out.print("------------------------------------\n");
+    }
+
+    public static void main(String args[]){
+        // Create hash table object
+        LinearProbing hashTable = new LinearProbing(5);
+        hashTable.insert(5);
+        hashTable.display();
     }
 }
